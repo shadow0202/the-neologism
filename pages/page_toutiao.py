@@ -110,7 +110,7 @@ class toutiao(object):
         return ctx.call('get_as_cp_signature')
 
 
-if __name__ == '__main__':
+def toutiaoCrawler():
     path = r'D:\new'  ##保存路径
     tags = []
     tags.append('news_entertainment/')

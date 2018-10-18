@@ -62,6 +62,5 @@ def sinaCrawler():
             print ("Except——新浪: " + str(e))
 
 
-if __name__ == '__main__':
-    sinaCrawler()
+
 

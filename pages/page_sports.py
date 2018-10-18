@@ -11,6 +11,9 @@
 import json
 import io
 import sys
+
+import chardet
+
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 from utils import download_page
@@ -24,7 +27,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/5
 
 
 # 收集标题的list
-def sportsdict():
+def sportCrawler():
     for url in urlcol:
         result = download_page.download_html_waitting(url,headers,1)
         result = str(result, encoding = "gbk").replace("data_callback(", '{"data_callback":', 1)[:-1] + "}"
@@ -46,5 +49,3 @@ def sportsdict():
             except:
                 print ("Except -- ，跳往下一链接")
 
-if __name__ == '__main__':
-    sportsdict()
