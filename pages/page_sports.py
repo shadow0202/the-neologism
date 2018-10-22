@@ -27,7 +27,9 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/5
 
 
 # 收集标题的list
-def sportCrawler():
+def sportCrawler(path):
+    # 写诶文件
+    file = open(path,'a',encoding="utf-8")
     for url in urlcol:
         result = download_page.download_html_waitting(url,headers,1)
         result = str(result, encoding = "gbk").replace("data_callback(", '{"data_callback":', 1)[:-1] + "}"
@@ -36,6 +38,7 @@ def sportCrawler():
         for item in items:
             title = item['title']
             docurl = item['docurl']
+            file.write(title)
             print(title, docurl)
             soup = download_page.download_soup_waitting(docurl, headers, 1)
             try:
@@ -45,7 +48,9 @@ def sportCrawler():
                 else:
                     text = post.get_text().strip()
                     result = text.replace('\n', '')
+                    file.write(result)
                     print(result)
             except:
                 print ("Except -- ，跳往下一链接")
+    file.close()
 

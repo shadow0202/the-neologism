@@ -67,8 +67,7 @@ def allmovieCrawler():
         print(description)
         time.sleep(0.5)
 
-
-def hotmovieCrawler():
+def hotmovieCrawler(path):
     # 定义一个列表存储电影的基本信息
     movies = []
     start = 0
@@ -95,18 +94,23 @@ def hotmovieCrawler():
     # 看看一共获取了多少电影
     print(len(movies))
 
+    # 写入文件
+    file = open(path, "a",encoding="utf-8")
     for x in range(0, len(movies)):
         url = movies[x]['url']
-        soup = download_page.download_soup_waitting(url, headers, 1)
         # 提取电影简介
         # 捕捉异常，有的电影详情页中并没有简介
         try:
+            soup = download_page.download_soup_waitting(url, headers, 1)
             description = soup.find_all("span", attrs={"property": "v:summary"})[0].get_text().strip().replace('\n', '')
+            file.write(description.encode('utf-8','ignore').decode('utf-8','ignore')+'\n')
+            print(description)
         except Exception as e:
             # 没有提取到简介，则简介为空
             description = ''
             movies[x]['description'] = description
-        print(description)
+            print(e)
         time.sleep(0.5)
+    file.close()
 
 

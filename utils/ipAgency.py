@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 
 def get_ip_list(headers):
     """ 从代理网站上获取代理"""
+    print("qwe")
     ip_list = []
     page = requests.get('http://www.xicidaili.com/wt', headers=headers)
     soup = BeautifulSoup(page.text, 'html.parser')

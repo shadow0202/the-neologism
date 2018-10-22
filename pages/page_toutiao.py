@@ -6,13 +6,15 @@
 """
 
 ##爬取今日头条频道数据
+import os
 import requests
 import re
 import json
 import random
 import time
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+# from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import pandas as pd
+from urllib3.exceptions import InsecureRequestWarning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  ###禁止提醒SSL警告
 import hashlib
@@ -21,7 +23,7 @@ import execjs
 
 class toutiao(object):
     def __init__(self, path, url):
-        self.path = path  # CSV保存地址
+        self.path = path
         self.url = url
         self.s = requests.session()
         headers = {'Accept': '*/*',
@@ -61,25 +63,28 @@ class toutiao(object):
             j = json.loads(req.text)
 
             items = j['data']
+            # 写入文件
+            file = open(self.path,'a',encoding="utf-8")
             for item in items:
-                try:
+                try :
                     title = item['title']
                     abstract = item['abstract']
+                    file.write(title + ":" +abstract+'\n')
                     print(title + " : " + abstract)
                     titles.append(title)  ##标题
                     try:
                         abstracts.append(abstract)  ###文章摘要
-                    except:
+                    except Exception as e:
                         abstracts.append('')
-                except:
-                    print("Except - 头条")
+                except Exception as e:
+                    print("Except - 头条",e)
+            file.close()
             time.sleep(2)
-
             print('------------' + str(j['next']['max_behot_time']))
-
-            data = {'title': titles, 'abstract': abstracts}
-            df = pd.DataFrame(data=data)
-            df.to_csv(self.path + r'\toutiao.csv', encoding='GB18030', index=0)
+            #
+            # data = {'title': titles, 'abstract': abstracts}
+            # df = pd.DataFrame(data=data)
+            # df.to_csv(self.path + r'\toutiao.csv', encoding='GB18030', index=0)
 
     def getHoney(self, t):  #####根据JS脚本破解as ,cp
         t(t)
@@ -99,8 +104,8 @@ class toutiao(object):
         # printcp)
         return eas, ecp
 
-    def get_js(self):  ###大牛破解as ,cp,  _signature  参数的代码，然而具体关系不确定，不能连续爬取
-        f = open(r"C:\Users\huxw\Desktop\the-neologism\utils\toutiao.js", 'r', encoding='UTF-8')
+    def get_js(self):  ###大牛破解as ,cp,  signature  参数的代码，然而具体关系不确定，不能连续爬取
+        f = open(os.path.abspath(os.path.join(os.getcwd(), "."))+r"\utils\toutiao.js", 'r', encoding='UTF-8')
         line = f.readline()
         htmlstr = ''
         while line:
@@ -110,8 +115,8 @@ class toutiao(object):
         return ctx.call('get_as_cp_signature')
 
 
-def toutiaoCrawler():
-    path = r'D:\new'  ##保存路径
+def toutiaoCrawler(path):
+    # path = r'D:\new'  ##保存路径
     tags = []
     tags.append('news_entertainment/')
     tags.append('news_hot/')
