@@ -17,6 +17,7 @@ def newsCrawler(path):
     tags = ['china','society','world']
     for tag in tags:
         url = r'http://news.cctv.com/' + tag + r'/data/index.json'
+        print(url)
         result = download_page.download_html_waitting(url,headers,1)
         result = json.loads(result,strict=False)
         result = result['rollData']

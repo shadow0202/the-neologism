@@ -28,6 +28,7 @@ def doubanCrawler(path):
     # print(soup)
     hot_topic = soup.find("ul", attrs={"class": "trend"})
     if hot_topic != None:
+        print("-------------没有使用代理---------------")
         hot_topics = hot_topic.find_all("li")
         writesth(path,hot_topics)
     else:
@@ -61,6 +62,7 @@ def doubanCrawler(path):
                     if hot_topic == None:
                         continue
                     hot_topics = hot_topic.find_all("li")
+                    # print(proxies)
                 except Exception as e:
                     print("Except——豆瓣:爬取24小时热门话题失败",e)
                 writesth(path,hot_topics)

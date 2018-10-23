@@ -23,14 +23,14 @@ for path in path_list:
 # 爬取豆瓣信息
 page_douban.doubanCrawler(fpath+'douban.txt')
 # 爬取电竞信息
-# page_esports.esportsCrawler(fpath+'esports.txt')
+page_esports.esportsCrawler(fpath+'esports.txt')
 # 爬取电影信息
-# page_movie.hotmovieCrawler(fpath+'movie.txt')
+page_movie.hotmovieCrawler(fpath+'movie.txt')
 # 爬取新闻信息
-# page_news.newsCrawler(fpath+'news.txt')
+page_news.newsCrawler(fpath+'news.txt')
 # # 爬取微博信息
-# page_sinablog.sinaCrawler(fpath+'sinablog.txt')
+page_sinablog.sinaCrawler(fpath+'sinablog.txt')
 # # 爬取体育信息
 # page_sports.sportCrawler(fpath+'sports.txt')
 # # 爬取头条信息
-# page_toutiao.toutiaoCrawler(fpath+'toutiao.txt')
+page_toutiao.toutiaoCrawler(fpath+'toutiao.txt')
