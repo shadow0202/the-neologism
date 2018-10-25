@@ -39,6 +39,6 @@ def newsCrawler(path):
                     result = title + ":" + content.get_text().strip().replace('\n', '')
                     file.write(result.encode('utf-8','ignore').decode('utf-8','ignore')+'\n')
                     print(result)
-                except:
-                    print ("Except - 新闻:"+url)
+                except Exception as e:
+                    print ("Except - 新闻:"+url,e)
         file.close()

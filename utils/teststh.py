@@ -35,6 +35,22 @@ import os
 #     print(list['url'])
 # # print(type(a),len(a))
 # print(a)
+import time
+#
+# lists = []
+# if lists != []:
+#     print(123)
+# else:
+#     print(456)
+#
+#
+# start=int(time.time())
+# print(start)
 
-lists = []
-print(lists)
+t = time.time()
+
+nowTime = lambda:int(round(time.time() * 1000))
+
+print(nowTime())
+time.sleep(2)
+print(nowTime())
