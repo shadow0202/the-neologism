@@ -7,6 +7,8 @@
 """
 import pickle
 
+import os
+
 
 def get_stopwords():
     with open('data/stopword.txt', 'r',encoding='utf-8') as f:
@@ -51,3 +53,7 @@ def load_model(filename):
     with open(filename, 'rb') as fr:
         model = pickle.load(fr)
     return model
+
+def file_name(file_dir):
+    for root, dirs, files in os.walk(file_dir):
+        return files

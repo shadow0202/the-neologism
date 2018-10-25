@@ -11,7 +11,7 @@ import jieba
 
 from tokenizer.config import basedir
 from tokenizer.model import TrieNode
-from tokenizer.utils import get_stopwords, load_model, load_dictionary, save_model, generate_ngram
+from tokenizer.utils import get_stopwords, load_model, load_dictionary, save_model, generate_ngram, file_name
 
 
 def load_data(filename, stopwords):
@@ -51,21 +51,26 @@ if __name__ == "__main__":
         save_model(root, root_name)
 
     # 加载新的文章
-    filename = 'data/demo.txt'
-    data = load_data(filename, stopwords)
-    # 将新的文章插入到Root中
-    load_data_2_root(data)
-
-    # 定义取TOP5个
-    topN = 5
-    result, add_word = root.find_word(topN)
-    # 如果想要调试和选择其他的阈值，可以print result来调整
-    # print("\n----\n", result)
-    print("\n----\n", '增加了 %d 个新词, 词语和得分分别为: \n' % len(add_word))
-    print('#############################')
-    for word, score in add_word.items():
-        print(word + ' ---->  ', score)
-    print('#############################')
+    fpath = os.path.abspath(os.path.join(os.getcwd(), "..")) + '\\result\\'
+    files = file_name(fpath)
+    for file in files:
+        data = load_data(fpath+file, stopwords)
+        # 将新的文章插入到Root中
+        load_data_2_root(data)
+        # 定义取TOP5个
+        topN = 5
+        result, add_word = root.find_word(topN)
+        # 如果想要调试和选择其他的阈值，可以print result来调整
+        # print("\n----\n", result)
+        fc_file = open(fpath+file.split(r'.')[0]+r'_fenciresult.txt','a',encoding='utf-8')
+        print("\n----\n", '增加了 %d 个新词, 词语和得分分别为: \n' % len(add_word))
+        fc_file.write("\n----\n"+'增加了 %d 个新词, 词语和得分分别为: \n' % len(add_word))
+        print('#############################')
+        for word, score in add_word.items():
+            print(word + ' ---->  ', score)
+            fc_file.write(word + ' ---->  ' + score  + '\n')
+        print('#############################')
+        fc_file.close()
 
     # # 前后效果对比
     # test_sentence = '蔡英文在昨天应民进党当局的邀请，准备和陈时中一道前往世界卫生大会，和谈有关九二共识问题'
