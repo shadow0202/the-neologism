@@ -13,7 +13,7 @@
 
 * 爬取用的主要使用requests、beautifulsoup两个工具以及涉及到的解密和代理等。
 
-* 分词由[中文分词新词发现](https://github.com/zhanzecheng/Chinese_segment_augment.git)完成,详细内容见下。
+* 分词由[中文分词新词发现](https://github.com/zhanzecheng/Chinese_segment_augment.git)完成
 
 
 ## 鸣谢
