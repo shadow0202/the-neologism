@@ -10,7 +10,7 @@ from pages import page_douban, page_movie, page_esports, page_news, page_sinablo
 
 print("--------------#### 任务正在启动 ####-----------------")
 
-fpath = r'./Chinese_segment_augment/data/'
+fpath = os.path.dirname(os.path.abspath(__file__))+'\\result\\'
 
 path_list=['douban','esports','movie','news','sinablog','sports','toutiao']
 
