@@ -15,6 +15,8 @@ import sys
 import chardet
 import requests
 
+from tokenizer.utils import format_str
+
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
 from utils import download_page
@@ -44,7 +46,7 @@ def sportCrawler(path):
             for item in items:
                 title = item['title']
                 docurl = item['docurl']
-                file.write(title)
+                file.write(format_str(title))
                 print(title, docurl)
                 from bs4 import BeautifulSoup
                 res = requests.get(docurl,headers=headers)
@@ -58,7 +60,7 @@ def sportCrawler(path):
                     else:
                         text = post.get_text().strip()
                         result = text.replace('\n', '')
-                        file.write(result+'\n')
+                        file.write(format_str(result)+'\n')
                         print(result)
                 except:
                     print ("Except -- ，跳往下一链接")

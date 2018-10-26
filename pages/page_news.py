@@ -9,6 +9,7 @@
 #  国内、国际、社会类新闻
 import json
 
+from tokenizer.utils import format_str
 from utils import download_page
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'}
@@ -37,7 +38,7 @@ def newsCrawler(path):
                     [s.extract() for s in content(['div', 'script'])]
                     # print title, content.get_text().strip().replace('\n', '')
                     result = title + ":" + content.get_text().strip().replace('\n', '')
-                    file.write(result.encode('utf-8','ignore').decode('utf-8','ignore')+'\n')
+                    file.write(format_str(result.encode('utf-8','ignore').decode('utf-8','ignore'))+'\n')
                     print(result)
                 except Exception as e:
                     print ("Except - 新闻:"+url,e)

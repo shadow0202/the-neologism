@@ -9,6 +9,7 @@
 #     a、最新电竞信息
 import json
 
+from tokenizer.utils import format_str
 from utils import download_page
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'}
@@ -25,7 +26,7 @@ def esportsCrawler(path):
             for item in items:
                 title = item['title']
                 summary = item['summary']
-                file.write((title+":"+summary)+'\n')
+                file.write(format_str((title+":"+summary))+'\n')
                 print(title + "---" + summary)
             file.close()
         except Exception as e:

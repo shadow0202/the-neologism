@@ -38,7 +38,7 @@ page_sinablog.sinaCrawler(fpath+'sinablog.txt')
 # # 爬取体育信息
 print("——————开始爬取体育内容———————")
 page_sports.sportCrawler(fpath+'sports.txt')
-# # 爬取头条信息
+# 爬取头条信息
 print("——————开始爬取头条内容———————")
 page_toutiao.toutiaoCrawler(fpath+'toutiao.txt')
 

@@ -16,6 +16,8 @@ import time
 import pandas as pd
 from urllib3.exceptions import InsecureRequestWarning
 
+from tokenizer.utils import format_str
+
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  ###禁止提醒SSL警告
 import hashlib
 import execjs
@@ -69,7 +71,7 @@ class toutiao(object):
                 try :
                     title = item['title']
                     abstract = item['abstract']
-                    file.write(title + ":" +abstract+'\n')
+                    file.write(format_str(title + ":" +abstract)+'\n')
                     print(title + " : " + abstract)
                     titles.append(title)  ##标题
                     try:

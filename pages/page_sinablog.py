@@ -11,6 +11,8 @@
 #
 
 import json
+
+from tokenizer.utils import format_str
 from utils import download_page
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'}
@@ -29,7 +31,7 @@ def sinaCrawler(path):
             for hot in hot_list:
                 title = hot.find("a").get_text()
                 href = "https://s.weibo.com"+hot.find("a").get('href')
-                file.write(title)
+                file.write(format_str(title))
                 print(title + ":" + href)
                 # 过滤无效链接
                 if href != "https://s.weibo.comjavascript:void(0);":
@@ -40,7 +42,7 @@ def sinaCrawler(path):
                         content = card.find("div",attrs = {"class":"content"})
                         blogger = content.find("p", attrs={"class": "txt"}).get('nick-name')
                         blog = content.find("p", attrs={"class": "txt"}).get_text()
-                        file.write(blogger+":"+blog)
+                        file.write(format_str(blogger+":"+blog))
                         print(blogger+":"+blog)
         except Exception as e:
             print("Except——新浪:爬取异常，已跳过",e)

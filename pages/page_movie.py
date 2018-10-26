@@ -15,6 +15,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
+from tokenizer.utils import format_str
 from utils import download_page, ipAgency
 from utils.ipAgency import get_proxy
 
@@ -44,7 +45,7 @@ def hotmovieCrawler(path):
                     html = requests.get(movie_url).content
                     soup = BeautifulSoup(html, "html.parser")
                     description = soup.find_all("span", attrs={"property": "v:summary"})[0].get_text().strip().replace('\n','')
-                    file.write(description.encode('utf-8', 'ignore').decode('utf-8', 'ignore') + '\n')
+                    file.write(format_str(description.encode('utf-8', 'ignore').decode('utf-8', 'ignore')) + '\n')
                     print(description)
                 except Exception as e:
                     print("该电影没有简介", e)
@@ -81,7 +82,7 @@ def hotmovieCrawler(path):
                                 html = requests.get(movie_url).content
                                 soup = BeautifulSoup(html, "html.parser")
                                 description = soup.find_all("span", attrs={"property": "v:summary"})[0].get_text().strip().replace('\n', '')
-                                file.write(description.encode('utf-8', 'ignore').decode('utf-8', 'ignore') + '\n')
+                                file.write(format_str(description.encode('utf-8', 'ignore').decode('utf-8', 'ignore')) + '\n')
                                 print(description)
                             except Exception as e:
                                 print("该电影没有简介",e)

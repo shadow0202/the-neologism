@@ -16,6 +16,7 @@ import telnetlib
 import requests
 from bs4 import BeautifulSoup
 
+from tokenizer.utils import format_str
 from utils import download_page, ipAgency
 from utils.ipAgency import get_proxy
 
@@ -32,6 +33,7 @@ def doubanCrawler(path):
         hot_topics = hot_topic.find_all("li")
         writesth(path,hot_topics)
     else:
+        print("-------------使用代理---------------")
         # 获取代理IP
         ip_list = ipAgency.get_ip_list(headers)
         # print(ip_list)
@@ -81,7 +83,7 @@ def writesth(path,hot_topics):
                 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
                 'Referer': href}
             com_id = re.findall("\d+", href)[0]
-            nums = ["0", "20", "40"]
+            nums = ["20"]
             for num in nums:
                 url = "https://m.douban.com/rexxar/api/v2/gallery/topic/" + str(
                     com_id) + "/items?sort=hot&start=0&count=" + num + "&status_full_text=1&guest_only=0&ck=null"
@@ -89,7 +91,7 @@ def writesth(path,hot_topics):
                     html = download_page.download_html_waitting(url, headers2, 1)
                     res = json.loads(html)
                     for item in res["items"]:
-                        file.write(item["abstract"] + '\n')
+                        file.write(format_str(item["abstract"]) + '\n')
                         print(item["abstract"])
                 except Exception as e:
                     print("Except——豆瓣:爬取热评失败", e)
