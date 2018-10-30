@@ -9,11 +9,11 @@ import pickle
 
 import os
 
-import builtins
+from globalVariable import fpath
 
 
 def get_stopwords():
-    with open('data/stopword.txt', 'r',encoding='utf-8') as f:
+    with open(fpath + '\\new_word_md\\data\\stopword.txt', 'r',encoding='utf-8') as f:
         stopword = [line.strip() for line in f]
     return set(stopword)
 

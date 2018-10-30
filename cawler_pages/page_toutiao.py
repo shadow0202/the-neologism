@@ -16,7 +16,7 @@ import time
 import pandas as pd
 from urllib3.exceptions import InsecureRequestWarning
 
-from tokenizer.utils import format_str
+from new_word_md.utils import format_str
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  ###禁止提醒SSL警告
 import hashlib

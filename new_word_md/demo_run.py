@@ -9,9 +9,10 @@
 import os
 import jieba
 
-from tokenizer.config import basedir
-from tokenizer.model import TrieNode
-from tokenizer.utils import get_stopwords, load_model, load_dictionary, save_model, generate_ngram, file_name
+from globalVariable import fpath
+from new_word_md.config import basedir
+from new_word_md.model import TrieNode
+from new_word_md.utils import get_stopwords, load_model, load_dictionary, save_model, generate_ngram, file_name
 
 
 def load_data(filename, stopwords):
@@ -51,18 +52,17 @@ if __name__ == "__main__":
         save_model(root, root_name)
 
     # 加载新的文章
-    fpath = os.path.abspath(os.path.join(os.getcwd(), "..")) + '\\result\\'
-    files = file_name(fpath)
+    files = file_name(fpath +'\\cawler_result\\')
     for file in files:
-        data = load_data(fpath+file, stopwords)
+        data = load_data(fpath +'\\cawler_result\\' + file, stopwords)
         # 将新的文章插入到Root中
         load_data_2_root(data)
         # 定义取TOP5个
         topN = 40
         result, add_word = root.find_word(topN)
         # 如果想要调试和选择其他的阈值，可以print result来调整
-        # print("\n----\n", result)
-        fc_file = open(fpath+file.split(r'.')[0]+r'_fenciresult.txt','a',encoding='utf-8')
+        # print("\n----\n", cawler_result)
+        fc_file = open(fpath + '\\new_word_md\\result\\' +file.split(r'.')[0]+r'_fenciresult.txt','a',encoding='utf-8')
         print("\n----\n", '增加了 %d 个新词, 词语和得分分别为: \n' % len(add_word))
         fc_file.write("\n----\n"+'增加了 %d 个新词, 词语和得分分别为: \n' % len(add_word))
         print('#############################')
@@ -78,9 +78,9 @@ if __name__ == "__main__":
     # load_data_2_root(data)
     # # 定义取TOP5个
     # topN = 20
-    # result, add_word = root.find_word(topN)
+    # cawler_result, add_word = root.find_word(topN)
     # # 如果想要调试和选择其他的阈值，可以print result来调整
-    # # print("\n----\n", result)
+    # # print("\n----\n", cawler_result)
     # print("\n----\n", '增加了 %d 个新词, 词语和得分分别为: \n' % len(add_word))
     # for word, score in add_word.items():
     #     print(word + ' ---->  ', score)
@@ -88,9 +88,9 @@ if __name__ == "__main__":
     # 前后效果对比
     # test_sentence = '蔡英文在昨天应民进党当局的邀请，准备和陈时中一道前往世界卫生大会，和谈有关九二共识问题'
     # print('添加前：')
-    # print("".join([(x + '/ ') for x in jieba.cut(test_sentence, cut_all=False) if x not in stopwords]))
+    # print("".join([(x + '/ ') for x in jieba_md.cut(test_sentence, cut_all=False) if x not in stopwords]))
     #
     # for word in add_word.keys():
-    #     jieba.add_word(word)
+    #     jieba_md.add_word(word)
     # print("添加后：")
-    # print("".join([(x + '/ ') for x in jieba.cut(test_sentence, cut_all=False) if x not in stopwords]))
+    # print("".join([(x + '/ ') for x in jieba_md.cut(test_sentence, cut_all=False) if x not in stopwords]))

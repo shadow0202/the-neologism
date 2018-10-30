@@ -16,7 +16,7 @@ import telnetlib
 import requests
 from bs4 import BeautifulSoup
 
-from tokenizer.utils import format_str
+from new_word_md.utils import format_str
 from utils import download_page, ipAgency
 from utils.ipAgency import get_proxy
 

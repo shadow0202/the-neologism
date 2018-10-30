@@ -15,7 +15,7 @@ import sys
 import chardet
 import requests
 
-from tokenizer.utils import format_str
+from new_word_md.utils import format_str
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 

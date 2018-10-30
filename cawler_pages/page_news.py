@@ -9,7 +9,7 @@
 #  国内、国际、社会类新闻
 import json
 
-from tokenizer.utils import format_str
+from new_word_md.utils import format_str
 from utils import download_page
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'}
