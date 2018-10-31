@@ -5,9 +5,8 @@
 # @File    : utils.py
 # @Software: PyCharm
 """
-import pickle
-
 import os
+import pickle
 
 from globalVariable import fpath
 

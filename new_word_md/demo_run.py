@@ -7,6 +7,7 @@
 # @Software: PyCharm
 """
 import os
+
 import jieba
 
 from globalVariable import fpath

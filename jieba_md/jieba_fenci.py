@@ -4,7 +4,6 @@
 # @Update  : 2018/10/30 15:56 
 # @Software: PyCharm
 """
-import operator
 
 import jieba
 import jieba.posseg
@@ -64,7 +63,6 @@ if __name__ == '__main__':
         record_res = record(data)
         # print(record_res)
         sorted_res = sort(record_res)
-        print(sorted_res)
         for res in sorted_res:
-            data_wr.write(res[1]+'\n'+res[0])
+            data_wr.write(res[0]+':'+res[1]+'\n')
     print('————————success————————')

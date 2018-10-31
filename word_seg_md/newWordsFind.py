@@ -8,19 +8,16 @@ Reference:
     http://www.matrix67.com/blog/archives/5044
     https://zlc1994.com/2017/01/04/
 """
-import os
-import re
-import time
 import math
-from imp import reload
-
-import pandas as pd
+import re
 import sys
-from leftRightEntropy import cal_infor_entropy
-from createCandidateWords import extract_cand_words, gen_bigram
+import time
+from imp import reload
 
 from globalVariable import fpath
 from new_word_md.utils import file_name
+from word_seg_md.createCandidateWords import gen_bigram, extract_cand_words
+from word_seg_md.leftRightEntropy import cal_infor_entropy
 
 reload(sys)
 
