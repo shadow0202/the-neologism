@@ -47,10 +47,17 @@ import time
 # start=int(time.time())
 # print(start)
 
-t = time.time()
+# t = time.time()
+#
+# nowTime = lambda:int(round(time.time() * 1000))
+#
+# print(nowTime())
+# time.sleep(2)
+# print(nowTime())
 
-nowTime = lambda:int(round(time.time() * 1000))
+d = {'a':1,'b':4,'c':2}
 
-print(nowTime())
-time.sleep(2)
-print(nowTime())
+a = sorted(d.items(),key = lambda x:x[1],reverse = True)
+
+for i in a:
+    print(i[0],i[1])

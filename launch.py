@@ -16,7 +16,7 @@ path_list=['douban','esports','movie','news','sinablog','sports','toutiao']
 
 
 for path in path_list:
-    final_path = fpath + path +".txt"
+    final_path = fpath + '\\cawler_result\\' + path +".txt"
     if os.path.exists(final_path):
         os.remove(final_path)
 

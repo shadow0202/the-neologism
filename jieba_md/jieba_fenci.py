@@ -4,6 +4,8 @@
 # @Update  : 2018/10/30 15:56 
 # @Software: PyCharm
 """
+import operator
+
 import jieba
 import jieba.posseg
 
@@ -39,8 +41,18 @@ def record(l):
     list_set = set(l)
     for item in list_set:
         # print("the %s has found %d" % (item, l.count(item)))
-        list_record.append(item + '\t' + str(l.count(item)))
+        list_record.append(item + ',' + str(l.count(item)))
     return list_record
+
+
+#  排序
+def sort(res_list):
+    res_dict = {}
+    for res in res_list:
+        a = res.split(',')
+        # print('a1:'+a[0]+',a[1]:'+a[1])
+        res_dict[a[0]] = a[1]
+    return sorted(res_dict.items(),key = lambda x:int(x[1]),reverse = True)
 
 
 if __name__ == '__main__':
@@ -50,6 +62,9 @@ if __name__ == '__main__':
         data = fenci(fpath + '\\cawler_result\\' + file)
         data_wr = open(fpath + '\\jieba_md\\result\\' + file.split(r'.')[0] + r'_result.txt','w',encoding='utf-8')
         record_res = record(data)
-        for res in record_res:
-            data_wr.write(res + '\n')
+        # print(record_res)
+        sorted_res = sort(record_res)
+        print(sorted_res)
+        for res in sorted_res:
+            data_wr.write(res[1]+'\n'+res[0])
     print('————————success————————')

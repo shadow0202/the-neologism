@@ -9,7 +9,7 @@
 * 执行launch.py运行爬虫任务，爬取内容暂存在cawler_result目录下
 * 执行/new_word_md/demo_run.py运行新词发现任务，结果暂存在/new_word_md/result/目录下
 * 执行/jieba_md/jieba_fenci.py运行jieba分词任务，结果暂存在/jieba_md/result/目录下
-
+* 执行/word_seg_md/newWordsfind.py运行无词库分词任务，结果暂存在/jieba_md/result/目录下
 
 ### 爬取\分词：
 
