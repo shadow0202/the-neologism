@@ -88,9 +88,9 @@ if __name__ == "__main__":
     # 前后效果对比
     # test_sentence = '蔡英文在昨天应民进党当局的邀请，准备和陈时中一道前往世界卫生大会，和谈有关九二共识问题'
     # print('添加前：')
-    # print("".join([(x + '/ ') for x in jieba_md.cut(test_sentence, cut_all=False) if x not in stopwords]))
+    # print("".join([(x + '/ ') for x in jieba.cut(test_sentence, cut_all=False) if x not in stopwords]))
     #
     # for word in add_word.keys():
-    #     jieba_md.add_word(word)
+    #     jieba.add_word(word)
     # print("添加后：")
-    # print("".join([(x + '/ ') for x in jieba_md.cut(test_sentence, cut_all=False) if x not in stopwords]))
+    # print("".join([(x + '/ ') for x in jieba.cut(test_sentence, cut_all=False) if x not in stopwords]))
