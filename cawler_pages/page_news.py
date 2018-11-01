@@ -27,6 +27,7 @@ def newsCrawler(path):
             print("Except-新闻列表",e)
         # 写入文件
         file = open(path, "a",encoding="utf-8")
+        file.write("抓取新闻内容")
         if items != []:
             for item in items:
                 title = item["title"]
@@ -43,3 +44,4 @@ def newsCrawler(path):
                 except Exception as e:
                     print ("Except - 新闻:"+url,e)
         file.close()
+    return 'success'

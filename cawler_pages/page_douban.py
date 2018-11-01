@@ -74,6 +74,7 @@ def doubanCrawler(path):
 # 写入文件
 def writesth(path,hot_topics):
     file = open(path, "a", encoding="utf-8")
+    file.write("抓取豆瓣内容")
     for topic in hot_topics:
         try:
             title = topic.find('a').get_text()
@@ -98,7 +99,7 @@ def writesth(path,hot_topics):
         except Exception as e:
             print("Except——豆瓣:爬取24小时热门话题失败", e)
     file.close()
-
+    return 'success'
 
 
 

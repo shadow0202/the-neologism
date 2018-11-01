@@ -23,6 +23,7 @@ def esportsCrawler(path):
             items = result["data"]["list"]
             # 写入文件
             file = open(path, "a",encoding="utf-8")
+            file.write("抓取电竞内容")
             for item in items:
                 title = item['title']
                 summary = item['summary']
@@ -31,4 +32,5 @@ def esportsCrawler(path):
             file.close()
         except Exception as e:
             print ("Except - 电竞:" + url,e)
+    return 'success'
 

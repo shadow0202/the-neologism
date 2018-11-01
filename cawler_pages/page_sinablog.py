@@ -24,6 +24,7 @@ def sinaCrawler(path):
     hot_tag.append("socialevent")
     # 写入文件
     file = open(path, "a",encoding="utf-8")
+    file.write("抓取新浪微博内容")
     for tag in hot_tag:
         soup = download_page.download_soup_waitting("https://s.weibo.com/top/summary?cate="+tag,headers,1)
         try:
@@ -69,6 +70,7 @@ def sinaCrawler(path):
             print ("Except——新浪: " + str(e))
 
     file.close()
+    return 'success'
 
 
 

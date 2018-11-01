@@ -28,6 +28,7 @@ def hotmovieCrawler(path):
     start = 0
     # 不断请求，直到返回结果为
     file = open(path, "a", encoding="utf-8")
+    file.write("抓取电影内容")
     while start <= 40:
         # 拼接需要请求的链接，包括标签和开始编号
         url = 'https://movie.douban.com/j/search_subjects?type=movie&tag=热门&sort=recommend&page_limit=20&page_start=' + str(
@@ -92,3 +93,4 @@ def hotmovieCrawler(path):
 
         start += 20
     file.close()
+    return 'success'

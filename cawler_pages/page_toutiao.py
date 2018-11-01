@@ -67,6 +67,7 @@ class toutiao(object):
             items = j['data']
             # 写入文件
             file = open(self.path,'a',encoding="utf-8")
+            file.write("抓取电影内容")
             for item in items:
                 try :
                     title = item['title']
@@ -127,3 +128,4 @@ def toutiaoCrawler(path):
         t = toutiao(path, url)
         t.getdata()
         t.closes()
+    return 'success'

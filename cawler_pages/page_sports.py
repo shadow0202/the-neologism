@@ -33,6 +33,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/5
 def sportCrawler(path):
     # 写诶文件
     file = open(path,'a',encoding="utf-8")
+    file.write("抓取体育内容")
     items = []
     for url in urlcol:
         result = download_page.download_html_waitting(url,headers,1)
@@ -65,4 +66,5 @@ def sportCrawler(path):
                 except:
                     print ("Except -- ，跳往下一链接")
     file.close()
+    return 'success'
 

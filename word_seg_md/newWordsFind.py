@@ -125,9 +125,10 @@ class SegDocument(object):
                 continue
             v.compute_info_entropy(word_cands)
         return sorted(values, key=lambda v: v.freq, reverse=True)
-if __name__ == '__main__':
 
+def run():
     files = file_name(fpath + '\\cawler_result')
+    final_res = []
     for file in files:
         start = time.clock()
         doc = open(fpath + '\\cawler_result\\' + file, 'r',encoding='utf-8').read()
@@ -139,8 +140,18 @@ if __name__ == '__main__':
         data_wr = open(fpath + '\\word_seg_md\\result\\' + file.split(r'.')[0] + r'_result.txt', 'w', encoding='utf-8')
         for item in xx.word_tf_pmi_ent:
             # word.append([item[0], item[1], item[2], item[3]])
+            final_res.append(item[0])
             data_wr.write(str(item[0])+','+str(item[1])+','+str(item[2])+','+str(item[3])+'\n')
         # df = pd.DataFrame(word, columns=['word', 'tf', 'pmi', 'info_ent'])
         # df.to_csv(path+'\\douban.csv', index=False)
         end = time.clock()
         print((end-start))
+        data_wr.close()
+
+    final_res = set(final_res)
+    final_wr = open(fpath + '\\word_seg_md\\final_result.txt','a',encoding='utf-8')
+    for res in final_res:
+        final_wr.write(res + '\n')
+
+    final_wr.close()
+    return final_res

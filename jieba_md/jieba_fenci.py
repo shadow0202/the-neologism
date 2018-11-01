@@ -11,6 +11,7 @@ import jieba.posseg
 from globalVariable import list_cixing, fpath
 from new_word_md.utils import file_name, get_stopwords
 
+all_words = []
 
 # 读取爬取结果
 def readres(path):
@@ -31,6 +32,7 @@ def fenci(path):
         for u in poss:
             if u.flag not in list_cixing:
                 data.append(u.word)
+                all_words.append(u.word)
     return data
 
 
@@ -54,15 +56,24 @@ def sort(res_list):
     return sorted(res_dict.items(),key = lambda x:int(x[1]),reverse = True)
 
 
-if __name__ == '__main__':
+def run():
     files = file_name(fpath+'\\cawler_result')
+    final_res = []
     print('——————正在结巴分词————————')
     for file in files:
         data = fenci(fpath + '\\cawler_result\\' + file)
         data_wr = open(fpath + '\\jieba_md\\result\\' + file.split(r'.')[0] + r'_result.txt','w',encoding='utf-8')
         record_res = record(data)
-        # print(record_res)
         sorted_res = sort(record_res)
         for res in sorted_res:
             data_wr.write(res[0]+':'+res[1]+'\n')
+
+        final_res = sort(record(all_words))
+        final_wr = open(fpath + '\\jieba_md\\' + r'final_result.txt', 'w', encoding='utf-8')
+        for res in final_res:
+            final_wr.write(res[0]+':'+res[1]+'\n')
+
+        data_wr.close()
+        final_wr.close()
+
     print('————————success————————')
